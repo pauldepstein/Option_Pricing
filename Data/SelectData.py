@@ -11,11 +11,13 @@ import pandas as pd
 file = "CombinedEnergyFutures.csv" # Same directory so full path not needed
 tickers = ["HH", "BRN"]
 
-def dataFromStartDate(date: datetime.date, ticker: str) -> pd.DataFrame:
+def dataFromStartDate(ticker: str, date: datetime.date = (datetime.datetime.now() - datetime.timedelta(days=180)).date()) -> pd.DataFrame:
     """
     Provide all energy futures data at or later than the date
     requested by the user and for the ticker required.
     :param date: datetime.date for the earliest data requested by the user
+    As a default this data is six months from now to enable volatility
+    computations to be made.
     :param ticker: string indicating commodity indicated by the user
     :return: dataframe with user data.
     """
