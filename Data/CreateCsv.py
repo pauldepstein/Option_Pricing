@@ -29,7 +29,7 @@ combined.rename(columns={"DHHNGSP": "HH", "DCOILBRENTEU": "BRN"}, inplace=True)
 # Inspection reveals that some data cleaning is necessary
 # The value data consists of strings but some consist of just a .
 # so they will simply be removed.
-combined = combined[combined["BRN"] !="."]
+combined = combined[combined["BRN"] != "."]
 combined = combined[combined["HH"] != "."]
 combined["BRN"] = combined["BRN"].astype(float)
 combined["HH"] = combined["HH"].astype(float)
