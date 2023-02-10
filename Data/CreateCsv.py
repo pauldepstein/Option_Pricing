@@ -26,5 +26,14 @@ combined = HH.merge(BRN, left_on='DATE', right_on='DATE')
 combined.sort_values(by='DATE', inplace=True)
 combined.rename(columns={"DHHNGSP": "HH", "DCOILBRENTEU": "BRN"}, inplace=True)
 
+# Inspection reveals that some data cleaning is necessary
+# The value data consists of strings but some consist of just a .
+# so they will simply be removed.
+combined = combined[combined["BRN"] !="."]
+combined = combined[combined["HH"] != "."]
+combined["BRN"] = combined["BRN"].astype(float)
+combined["HH"] = combined["HH"].astype(float)
+combined = combined[combined["BRN"] > 0]
+combined = combined[combined["HH"] > 0]
 combined.to_csv("CombinedEnergyFutures.csv", index=False)
 

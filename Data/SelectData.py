@@ -25,6 +25,6 @@ def dataFromStartDate(date: datetime.date, ticker: str) -> pd.DataFrame:
         return pd.DataFrame()
 
     fullData = pd.read_csv(file)
-    recentData = fullData[fullData['DATE'] >= date.strftime('%Y/%m/%d')]
+    recentData = fullData[fullData['DATE'] >= date.strftime('%Y-%m-%d')]
     tickerData = recentData[['DATE', ticker]]
     return tickerData
