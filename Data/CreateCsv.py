@@ -10,6 +10,7 @@ from Feb 7, 2018 to Feb 7, 2023 and Crude Oil Prices: Brent - Europe (DCOILBRENT
 Feb 6, 2018 to Feb 6, 2023
 The Henry Hub data acts, using the same dates and prices, as a proxy for HH futures (HH) dated
 MAR 24.  The Brent data acts as a proxy for BRENT futures (BRN) dated JAN 24.
+Accordingly those columns are renamed.
 """
 import pandas as pd
 """
@@ -23,6 +24,7 @@ BRN = pd.read_csv("DCOILBRENTEU.csv")
 
 combined = HH.merge(BRN, left_on='DATE', right_on='DATE')
 combined.sort_values(by='DATE', inplace=True)
+combined.rename(columns={"DHHNGSP": "HH", "DCOILBRENTEU": "BRN"}, inplace=True)
 
 combined.to_csv("CombinedEnergyFutures.csv", index=False)
 
