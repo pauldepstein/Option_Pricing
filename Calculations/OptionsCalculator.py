@@ -3,7 +3,11 @@ import scipy.stats as stats
 
 
 class OptionsCalculator:
-    """Calculate option prices and Greeks"""
+    """
+    Calculate option prices (currently implemented for Black76) and Greeks (later).
+    No error handling is done because the prevention of bad inputs
+    is regarded as the responsibility of the web interface.
+    """
 
     def __init__(self, sigma: float, time: float, price: float, strike: float, rate: float = 0.05):
         """
