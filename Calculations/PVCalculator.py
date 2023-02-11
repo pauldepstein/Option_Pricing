@@ -25,18 +25,21 @@ def PV(df: pd.DataFrame, ticker: str, monthsBack: int, strike: float, isCall: bo
     No formal testing (other than user observations) but the earlier functions have been unit-tested.
     """
     if not ticker in df.columns:
-        print("Can not price -- inconsistent information")
-        return -1
+        raise ValueError("Can not price -- inconsistent information")
+
+    if strike <= 0:
+        raise ValueError("Strike must be positive")
 
     # Present value of future is final entry of dataframe
     K = df[ticker].iloc[-1]
     print("K =", K)
-
+    if K <= 0:
+        raise ValueError("Value of future must be positive")
     # Sigma comes form historical volatilities
     sigma = historicalVol(df, ticker)
     print("The value of sigma is", sigma)
     if sigma < 0 or np.isnan(sigma):
-        raise ValueError("Can not price -- error found")
+        raise ValueError("Can not price -- error found in sigma")
 
     # Use the calendar to find T -- the time to expiry
     # First consider the beginning of the current month
