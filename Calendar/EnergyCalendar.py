@@ -14,11 +14,9 @@ import numpy as np
 
 
 class EnergyCalendar:
-    """Custom calendar for energy commodities trading
-    Since, in this first draft, business days are just week days,
-    the number of days in a year can be considered to be 52 * 5.
     """
-    DAYS_IN_YEAR = 260
+    Custom calendar for energy commodities trading
+    """
 
     def __init__(self, YearMonthDay: Tuple[int, int, int]):
         """
