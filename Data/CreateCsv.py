@@ -16,8 +16,8 @@ import pandas as pd
 """
 In this small-scale project, the csv files
 are stored in the same directory as the 
-code for ease of access.  These would
-be separated in later drafts of the code.
+code, or in the Flask directory, for ease of access.  
+These would be separated in later drafts of the code.
 """
 HH = pd.read_csv("DHHNGSP.csv")
 BRN = pd.read_csv("DCOILBRENTEU.csv")
@@ -35,5 +35,5 @@ combined["BRN"] = combined["BRN"].astype(float)
 combined["HH"] = combined["HH"].astype(float)
 combined = combined[combined["BRN"] > 0]
 combined = combined[combined["HH"] > 0]
-combined.to_csv("CombinedEnergyFutures.csv", index=False)
+combined.to_csv("..\\Flask\\CombinedEnergyFutures.csv", index=False)
 
