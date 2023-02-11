@@ -22,8 +22,7 @@ def PV(df: pd.DataFrame, ticker: str, monthsBack: int, strike: float, isCall: bo
     To simplify early versions of the web form, user input is minimised and therefore a default value of
     6 months forward is preset.
     Standard quant notation is used for all parameters.
-    No formal exception handling here but -1 is used as a sentinel value if an error is demonstrated.
-    Also, no formal testing (other than user observations) but the earlier functions have been unit-tested.
+    No formal testing (other than user observations) but the earlier functions have been unit-tested.
     """
     if not ticker in df.columns:
         print("Can not price -- inconsistent information")
@@ -31,13 +30,13 @@ def PV(df: pd.DataFrame, ticker: str, monthsBack: int, strike: float, isCall: bo
 
     # Present value of future is final entry of dataframe
     K = df[ticker].iloc[-1]
+    print("K =", K)
 
     # Sigma comes form historical volatilities
     sigma = historicalVol(df, ticker)
     print("The value of sigma is", sigma)
     if sigma < 0 or np.isnan(sigma):
-        print("Can not price -- error found")
-        return -1
+        raise ValueError("Can not price -- error found")
 
     # Use the calendar to find T -- the time to expiry
     # First consider the beginning of the current month
@@ -57,8 +56,7 @@ def PV(df: pd.DataFrame, ticker: str, monthsBack: int, strike: float, isCall: bo
     T = timeBetween(today, expiryDate)
     print("T is", T)
     if T < 0:
-        print("Error -- time to expiry can not be negative")
-        return -1
+        raise ValueError("Error -- time to expiry can not be negative")
 
     # Now all the elements are in place to price via the option calculator
     option = OptionsCalculator(sigma, T, K, strike, rate)

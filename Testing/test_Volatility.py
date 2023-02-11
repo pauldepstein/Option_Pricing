@@ -25,14 +25,21 @@ class TestVolatility(unittest.TestCase):
 
     def test_volatility_error(self):
         """
-        Testing historicalVol for the error case
-        where the ticker was not entered correctly.
+        Testing historicalVol for the exceptions
+        handling case where the ticker was not entered correctly.
+        The error string is checked.
         """
         data = [1, 1, 1, 1, 1]
         df = pd.DataFrame(data, columns=['HH'])
-        actual = historicalVol(df, "BRN", 3)
-        expected = -1
-        self.assertEqual(actual, expected)
+        expected = "The data source does not correspond to your ticker"
+
+        try:
+            vol = historicalVol(df, "BRN", 3)
+        except ValueError as error:
+            self.assertEqual(str(error), expected)
+            return None
+
+        self.assertEqual(True, False) # We should not be in this block as an exception should have been raised.
 
 if __name__ == '__main__':
     unittest.main()
