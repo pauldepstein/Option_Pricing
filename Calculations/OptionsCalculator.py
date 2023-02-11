@@ -80,6 +80,5 @@ class OptionsCalculator:
 
         # Now we have all the steps in place to just use the formula depending on whether we have
         # a call or a put.
-        if is_call:
-            return call(discount, self.price, self.strike, Nd1, Nd2)
-        return put(discount, self.price, self.strike, Nd1, Nd2)
+        return call(discount, self.price, self.strike, Nd1, Nd2) if is_call else \
+            put(discount, self.price, self.strike, Nd1, Nd2)
