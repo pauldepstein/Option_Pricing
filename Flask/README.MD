@@ -1,10 +1,13 @@
+# Python Flask Option Pricing REST API
+
 The project specifics are in the asterisked section at the bottom of this page.
 At this early stage, this project is basically a proof of concept, rather than
 a market-ready tool to get accurate option prices.
+## Limitations 
 The limitations are as follows:
 1) Only HH (Henry Hub) and Brent (BRN) are available.
 2) Since I do not have access to futures data, I relied on spot data as a proxy
-for futures prices. The original source of the proxy data is https://fred.stlouisfed.org/ accessed on
+for futures prices. The original source of the proxy [data was](https://fred.stlouisfed.org/) accessed on
 February 10, 2023.  The data collected is Henry Hub Natural Gas Spot Price (DHHNGSP)
 from Feb 7, 2018 to Feb 7, 2023 and Crude Oil Prices: Brent - Europe (DCOILBRENTEU) from
 Feb 6, 2018 to Feb 6, 2023
@@ -20,10 +23,10 @@ from 180 days from the present to the most recent date.
 8) The only uploaded data available is that from the most recent upload.  The uploading process replaces
 the data instead of adding to it.
 
-User instructions
+## User instructions
 1) pip install -r requirements.txt where the requirements.txt file is in the same folder as this README.
 2) Run the script flask_app.py which is agin in the same folder.
-3) After a few seconds, access the URL http://127.0.0.1:5000/price/
+3) After a few seconds, access this [URL](http://127.0.0.1:5000/price/)
 4) Fill in the boxes as described below:
 5) Yes for the upload box means that you want to upload data from up to six months in the past and price
 your option according to the corresponding historical volatility.  No for the upload box means that
