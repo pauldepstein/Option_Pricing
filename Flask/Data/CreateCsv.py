@@ -35,5 +35,5 @@ combined["BRN"] = combined["BRN"].astype(float)
 combined["HH"] = combined["HH"].astype(float)
 combined = combined[combined["BRN"] > 0]
 combined = combined[combined["HH"] > 0]
-combined.to_csv("..\\Flask\\CombinedEnergyFutures.csv", index=False)
+combined.to_csv("..\\CombinedEnergyFutures.csv", index=False)
 
