@@ -1,0 +1,37 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Options Pricing REST API</title>
+</head>
+<body>
+    <h1>Python Flask Options Pricer</h1>
+    <h2>These are options on 6-months futures</h2>
+    <h2>Only HH and BRN are supported.  Please choose one</h2>
+    <form method="post" action="{{ url_for('price') }}">
+        <label for="Upload">Upload</label>
+        <input type="text" name="Upload">
+        <br/>
+        <label for="Call">Call</label>
+        <input type="text" name="Call">
+        <br/>
+        <label for="Ticker">Ticker:</label>
+        <input type="text" name="Ticker">
+        <br/>
+        <label for="Strike">Strike:</label>
+        <input name="Strike">
+        <input type="submit" value="Submit"/>
+        <input type="reset"  value="RESET" style="color: red;"/>
+    </form>
+    {% if PV_success == True %}
+        <br/>
+        <p>Your option has been priced at {{result}}</p>
+    {% endif %}
+    {% if PV_success == False %}
+        <br/>
+        <p>{{error}}</p>
+        <p>The attempt to price has "{{result}}"</p>
+    {% endif %}
+</body>
+</html>
