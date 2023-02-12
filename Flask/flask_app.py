@@ -48,6 +48,16 @@ def _yesNoValidator(objectType: str, yesNo: str) -> bool:
     else:
         return validatingDict[responseIndicator]
 
+def _check_in_dict(ticker: str):
+    """
+    Exceptions raising if the ticker is not in the dictionary
+    globally set to monthsBack
+    :param ticker: string indicating ticker
+    :return: None
+    """
+    if ticker not in monthsBack:
+        raise ValueError("Currently there is no pricing available for this ticker")
+
 def _obtainDf(ticker: str) -> pd.DataFrame:
     """
     Obtaining the necessary dataframe
@@ -55,6 +65,8 @@ def _obtainDf(ticker: str) -> pd.DataFrame:
     or uploading may be required
     :param ticker is a string indicator of the ticker
     """
+    # validate ticker
+    _check_in_dict(ticker)
     datasource = "CombinedEnergyFutures.csv"  # string indicating where data is kept
     # Should computation be based on current dataframe
     # or is a new dataframe needed
@@ -74,12 +86,11 @@ def price():
     is_call = request.form['Call']
     # Dataframe depends on whether an upload is requested
     try:
-        df = _obtainDf(ticker)
+        df = _obtainDf(ticker) # includes validation of ticker
         strike = float(strike)
         # Call is true if yes, false if no and raises
         # an exception if neither
         is_call = _yesNoValidator("call_or_put", is_call)
-        monthsSubtract = monthsBack[ticker] # month before delivery that option expires
         # Use the PV Calculator to do the computation
         result = PV(df, ticker, monthsBack[ticker], strike, is_call)
         return render_template(
