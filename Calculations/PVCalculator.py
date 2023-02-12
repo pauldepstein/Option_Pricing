@@ -1,5 +1,5 @@
-from OptionsCalculator import OptionsCalculator
-from VolatilityCalculations import historicalVol
+from Calculations.OptionsCalculator import OptionsCalculator
+from Calculations.VolatilityCalculations import historicalVol
 from Calendar.CalendarComputations import timeBetween
 from Calendar.EnergyCalendar import EnergyCalendar
 import pandas as pd
