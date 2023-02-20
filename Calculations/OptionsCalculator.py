@@ -59,7 +59,7 @@ class OptionsCalculator:
             Note that N(-x) = 1 - N(x)
             """
             Nminus_d1, Nminus_d2 = 1 - _Nd1, 1 - _Nd2
-            return discount * (_K * Nminus_d2 - _F * Nminus_d1)
+            return _discount * (_K * Nminus_d2 - _F * Nminus_d1)
 
         def d1(_F: float, _K: float, sigma: float, time: float) -> float:
             """
