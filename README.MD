@@ -82,8 +82,4 @@ You have a freedom to choose technology stack, architecture, input/output schema
  
 The code and design should meet these requirements, but be sufficiently flexible to allow future changes. The code should be well structured, commented, have error handling and be tested.
 
-    • Produce working, object-oriented source code.
-    • Provide as a GitHub project or send back in electronic format.
-    • We will walk through your code together in the next session, answering questions on the code and programming/design choices you made.
-    • At the interview you will be asked to present an end-to-end demo of the application.
 ********************************************************************************************************************************************************************************************************************************************************************
