@@ -65,7 +65,6 @@ is impossible with user errors.
 
 *******************************************************************************************
 Assignment: Implement a REST API web application for option pricing and market data storage
-(recommended timing: 2-3 hours)
 
 Features:
     1. Upload market data required for option pricing
